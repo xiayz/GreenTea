@@ -1,0 +1,10 @@
+
+*.class
+
+*.jar
+
+framework/entity/config/entityengine.xml
+
+framework/entity/config/entityengine.xml
+
+ant

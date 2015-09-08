@@ -52,21 +52,30 @@ access. For a detailed description see the core/docs/entityconfig.html file.
     <debug-xa-resources value="false" />  <!-- see https://issues.apache.org/jira/browse/OFBIZ-4282 for more -->
     
     <delegator name="default" entity-model-reader="main" entity-group-reader="main" entity-eca-reader="main" distributed-cache-clear-enabled="false">
-        <group-map group-name="org.ofbiz" datasource-name="localderby"/>
+        <!-- <group-map group-name="org.ofbiz" datasource-name="localderby"/>
         <group-map group-name="org.ofbiz.olap" datasource-name="localderbyolap"/>
-        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/>
+        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/> -->
+        <group-map group-name="org.ofbiz" datasource-name="localmysql"/>
+        <group-map group-name="org.ofbiz.olap" datasource-name="localmysqlolap"/>
+        <group-map group-name="org.ofbiz.tenant" datasource-name="localmysqltenant"/>
     </delegator>
     <delegator name="default-no-eca" entity-model-reader="main" entity-group-reader="main" entity-eca-reader="main" entity-eca-enabled="false" distributed-cache-clear-enabled="false">
-        <group-map group-name="org.ofbiz" datasource-name="localderby"/>
+        <!-- <group-map group-name="org.ofbiz" datasource-name="localderby"/>
         <group-map group-name="org.ofbiz.olap" datasource-name="localderbyolap"/>
-        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/>
+        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/> -->
+        <group-map group-name="org.ofbiz" datasource-name="localmysql"/>
+        <group-map group-name="org.ofbiz.olap" datasource-name="localmysqlolap"/>
+        <group-map group-name="org.ofbiz.tenant" datasource-name="localmysqltenant"/>
     </delegator>
 
     <!-- be sure that your default delegator (or the one you use) uses the same datasource for test. You must run "ant load-demo" before running "ant run-tests" -->
     <delegator name="test" entity-model-reader="main" entity-group-reader="main" entity-eca-reader="main">
-        <group-map group-name="org.ofbiz" datasource-name="localderby"/>
+        <!-- <group-map group-name="org.ofbiz" datasource-name="localderby"/>
         <group-map group-name="org.ofbiz.olap" datasource-name="localderbyolap"/>
-        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/>
+        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/> -->
+        <group-map group-name="org.ofbiz" datasource-name="localmysql"/>
+        <group-map group-name="org.ofbiz.olap" datasource-name="localmysqlolap"/>
+        <group-map group-name="org.ofbiz.tenant" datasource-name="localmysqltenant"/>
     </delegator>
    
     <!-- need to at least define a name for each component to use -->
@@ -331,8 +340,8 @@ access. For a detailed description see the core/docs/entityconfig.html file.
             alias-view-columns="false"
             drop-fk-use-foreign-key-keyword="true"
             table-type="InnoDB"
-            character-set="latin1"
-            collate="latin1_general_cs">
+            character-set="utf8"
+            collate="utf8_general_ci">
         <read-data reader-name="tenant"/>
         <read-data reader-name="seed"/>
         <read-data reader-name="seed-initial"/>
@@ -347,7 +356,7 @@ access. For a detailed description see the core/docs/entityconfig.html file.
                 jdbc-password="ofbiz"
                 isolation-level="ReadCommitted"
                 pool-minsize="2"
-                pool-maxsize="250"
+                pool-maxsize="50"
                 time-between-eviction-runs-millis="600000"/><!-- Please note that at least one person has experienced a problem with this value with MySQL
                 and had to set it to -1 in order to avoid this issue.
                 For more look at http://markmail.org/thread/5sivpykv7xkl66px and http://commons.apache.org/dbcp/configuration.html-->
@@ -364,8 +373,8 @@ access. For a detailed description see the core/docs/entityconfig.html file.
             alias-view-columns="false"
             drop-fk-use-foreign-key-keyword="true"
             table-type="InnoDB"
-            character-set="latin1"
-            collate="latin1_general_cs">
+            character-set="utf8"
+            collate="utf8_general_ci">
         <read-data reader-name="tenant"/>
         <read-data reader-name="seed"/>
         <read-data reader-name="seed-initial"/>
@@ -380,7 +389,7 @@ access. For a detailed description see the core/docs/entityconfig.html file.
                 jdbc-password="ofbiz"
                 isolation-level="ReadCommitted"
                 pool-minsize="2"
-                pool-maxsize="250"
+                pool-maxsize="50"
                 time-between-eviction-runs-millis="600000"/><!-- Please note that at least one person has experienced a problem with this value with MySQL
                 and had to set it to -1 in order to avoid this issue.
                 For more look at http://markmail.org/thread/5sivpykv7xkl66px and http://commons.apache.org/dbcp/configuration.html-->
@@ -397,8 +406,8 @@ access. For a detailed description see the core/docs/entityconfig.html file.
             alias-view-columns="false"
             drop-fk-use-foreign-key-keyword="true"
             table-type="InnoDB"
-            character-set="latin1"
-            collate="latin1_general_cs">
+            character-set="utf8"
+            collate="utf8_general_ci">
         <read-data reader-name="tenant"/>
         <read-data reader-name="seed"/>
         <read-data reader-name="seed-initial"/>
@@ -413,7 +422,7 @@ access. For a detailed description see the core/docs/entityconfig.html file.
                 jdbc-password="ofbiz"
                 isolation-level="ReadCommitted"
                 pool-minsize="2"
-                pool-maxsize="250"
+                pool-maxsize="50"
                 time-between-eviction-runs-millis="600000"/><!-- Please note that at least one person has experienced a problem with this value with MySQL
                 and had to set it to -1 in order to avoid this issue.
                 For more look at http://markmail.org/thread/5sivpykv7xkl66px and http://commons.apache.org/dbcp/configuration.html-->
@@ -430,8 +439,8 @@ access. For a detailed description see the core/docs/entityconfig.html file.
             alias-view-columns="false"
             drop-fk-use-foreign-key-keyword="true"
             table-type="InnoDB"
-            character-set="latin1"
-            collate="latin1_general_cs">
+            character-set="utf8"
+            collate="utf8_general_ci">
         <read-data reader-name="tenant"/>
         <read-data reader-name="seed"/>
         <inline-jdbc
@@ -441,7 +450,7 @@ access. For a detailed description see the core/docs/entityconfig.html file.
                 jdbc-password="ofbiz"
                 isolation-level="ReadCommitted"
                 pool-minsize="2"
-                pool-maxsize="250"
+                pool-maxsize="50"
                 time-between-eviction-runs-millis="600000"/>
         <!-- <jndi-jdbc jndi-server-name="localjndi" jndi-name="java:/MySqlDataSource" isolation-level="Serializable"/> -->
     </datasource>
